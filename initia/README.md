@@ -1,5 +1,9 @@
 # Initia
 
+[![Discord](https://img.shields.io/discord/1229140544102338670?color=7289DA&logo=discord&logoColor=white)](https://discord.gg/hZXXnnpJv8)
+
+欢迎加入勘探大队 DC 反馈问题或者讨论分享信息
+
 https://initia.xyz/ initia 测试网 Docker 一键部署
 
 ## Info
@@ -12,8 +16,28 @@ https://initia.xyz/ initia 测试网 Docker 一键部署
 $ git clone https://github.com/kantandadui/node
 $ cd node/initia
 $ docker-compose -f compose.yaml up -d
-$ docker ps
+```
 
+查看容器日志
+
+```
+$ docker ps // 查看名为 initia 的 CONTAINER ID
+$ docker logs $ID -n 100 -f
+
+// 或
+$ docker logs $(docker ps --format "{{.ID}} {{.Names}}" | grep " initia$" | awk '{print $1}') -f -n 100
+```
+
+执行容器内程序，如使用 initiad 执行创建验证者
+
+```
+$ docker ps // 查看名为 initia 的 CONTAINER ID
+$ docker exec -it /bin/bash
+
+// 或
+$ docker exec -it $(docker ps --format "{{.ID}} {{.Names}}" | grep " initia$" | awk '{print $1}') /bin/bash
+
+initiad version
 ```
 
 ## env
@@ -48,7 +72,8 @@ $ wget https://snapshots.polkachu.com/testnet-snapshots/initia/initia_150902.tar
 或者你可以选择使用某种下载软件下载，总之下载好后请做 2 个修改
 
 1. 修改 .env 的 RECOVER_FROM_SNAPSHOTS=true
-2. 修改 .env 的 SNAPSHOTS_PATH 为你存放快照的文件夹路径，比如 /home/users/snapshots，注意到文件夹路径就行，不需要指定到文件
+2. 修改 .env 的 SNAPSHOTS_PATH 为你存放快照的文件夹全路径，比如 /home/users/snapshots，注意到文件夹路径就行，不需要指定到文件
+3. 确保快照完整名字是 initia_latest.tar.lz4，初始化脚本只会识别这个名字的快照压缩文件
 
 一切就绪后执行
 
