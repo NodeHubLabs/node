@@ -63,3 +63,5 @@ Recovering from snapshots...
 ```
 
 说明正在从快照恢复，由于快照文件较大需要解压和写入磁盘，启动时间可能较长
+
+**从快照恢复后记得修改 RECOVER_FROM_SNAPSHOTS=false ，否则下次启动还会从快照恢复**
