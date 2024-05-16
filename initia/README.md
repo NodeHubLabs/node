@@ -15,6 +15,7 @@ https://initia.xyz/ initia 测试网 Docker 一键部署
 ```sh
 $ git clone https://github.com/kantandadui/node
 $ cd node/initia
+$ cp ./.env.example ./.env
 $ docker-compose -f compose.yaml up -d
 ```
 
