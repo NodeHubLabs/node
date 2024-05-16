@@ -1,0 +1,20 @@
+services:
+  artela:
+    environment:
+      - SEEDS=${SEEDS}
+      - PEERS=${PEERS}
+      - GENESIS_URL=${GENESIS_URL}
+      - ADDRBOOK_URL=${ADDRBOOK_URL}
+      - CHAIN_ID=${CHAIN_ID}
+      - MONIKER=${MONIKER}
+      - RECOVER_FROM_SNAPSHOTS=${RECOVER_FROM_SNAPSHOTS}
+    image: kantandadui/artela:latest
+    container_name: artela
+    pull_policy: always
+    command: ['/bin/sh', '-c', '/app/init.sh && artelad start']
+    volumes:
+      - artela_data:/root/.artelad
+      - ${SNAPSHOTS_PATH}:/root/metadata
+
+volumes:
+  artela_data:

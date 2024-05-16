@@ -1,19 +1,22 @@
 flag_file="$HOME/.initia/flag_init"
 
-echo "NODE_NAME = $NODE_NAME"
-echo "ORACLE_URL = $ORACLE_URL"
-echo "RECOVER_FROM_SNAPSHOTS = $RECOVER_FROM_SNAPSHOTS"
 echo "SEEDS = $SEEDS"
 echo "PEERS = $PEERS"
+echo "GENESIS_URL = $GENESIS_URL"
+echo "ADDRBOOK_URL = $ADDRBOOK_URL"
+echo "CHAIN_ID  = $CHAIN_ID"
+echo "MONIKER = $MONIKER"
+echo "ORACLE_URL = $ORACLE_URL"
+echo "RECOVER_FROM_SNAPSHOTS = $RECOVER_FROM_SNAPSHOTS"
 
 if [ -f "$flag_file" ]; then
     echo "Flag file exists. Starting directly."
 else
     echo "Starting init"
-    initiad init $NODE_NAME --chain-id initiation-1
+    initiad init $NODE_NAME --chain-id $CHAIN_ID
 
     # genesis
-    curl -Ls https://snapshots.polkachu.com/testnet-genesis/initia/genesis.json > $HOME/.initia/config/genesis.json
+    curl -Ls $GENESIS_URL > $HOME/.initia/config/genesis.json
 
     touch "$flag_file"
     echo "create init flag file"
@@ -47,6 +50,6 @@ sed -i 's/^production = .*/production = true/' $HOME/.initia/config/app.toml
 sed -i "s/^oracle_address = .*/oracle_address = \"$ORACLE_URL\"/" $HOME/.initia/config/app.toml
 
 echo "fetching latest network addr"
-curl -Ls https://rpc-initia-testnet.trusted-point.com/addrbook.json > $HOME/.initia/config/addrbook.json
+curl -Ls $ADDRBOOK_URL > $HOME/.initia/config/addrbook.json
 sed -i "s/^persistent_peers = .*/persistent_peers = \"$PEERS\"/" $HOME/.initia/config/config.toml
 sed -i "s/^seeds = .*/seeds = \"$SEEDS\"/" $HOME/.initia/config/config.toml
