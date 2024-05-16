@@ -1,0 +1,41 @@
+services:
+  initia:
+    environment:
+      - NODE_NAME=${NODE_NAME}
+      - ORACLE_URL=${ORACLE_URL}
+      - SEEDS=${SEEDS}
+      - PEERS=${PEERS}
+      - RECOVER_FROM_SNAPSHOTS=${RECOVER_FROM_SNAPSHOTS}
+    image: kantandadui/initia:latest-dev
+    container_name: initia
+    pull_policy: always
+    depends_on:
+      - initia-slinky
+    networks:
+      - initia-network
+    command: ['/bin/sh', '-c', '/app/init.sh && initiad start']
+    volumes:
+      - initia_data:/root/.initia
+      - ${SNAPSHOTS_PATH}:/root/metadata
+
+  initia-slinky:
+    image: kantandadui/initia-slinky:latest-dev
+    container_name: initia-slinky
+    pull_policy: always
+    networks:
+      - initia-network
+    command:
+      [
+        './slinky',
+        '--oracle-config-path',
+        './oracle.json',
+        '--market-map-endpoint',
+        '${MARKET_MAP_ENDPOINT}',
+      ]
+
+networks:
+  initia-network:
+    driver: bridge
+
+volumes:
+  initia_data:
