@@ -6,7 +6,7 @@ services:
       - SEEDS=${SEEDS}
       - PEERS=${PEERS}
       - RECOVER_FROM_SNAPSHOTS=${RECOVER_FROM_SNAPSHOTS}
-    image: kantandadui/initia:latest-dev
+    image: kantandadui/initia:latest
     container_name: initia
     pull_policy: always
     depends_on:
@@ -19,7 +19,7 @@ services:
       - ${SNAPSHOTS_PATH}:/root/metadata
 
   initia-slinky:
-    image: kantandadui/initia-slinky:latest-dev
+    image: kantandadui/initia-slinky:latest
     container_name: initia-slinky
     pull_policy: always
     networks:
