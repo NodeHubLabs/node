@@ -35,6 +35,8 @@ if [ "$RECOVER_FROM_SNAPSHOTS" = "true" ]; then
 fi
 
 
+sed -i 's/laddr = "tcp:\/\/127\.0\.0\.1:27857"/laddr = "tcp:\/\/0.0.0.0:27857"/' $HOME/.initia/config/config.toml
+
 # setting minimum-gas-prices = "0.15uinit,0.01uusdc"
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.15uinit,0.01uusdc\"|" $HOME/.initia/config/app.toml
 

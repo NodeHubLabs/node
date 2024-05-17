@@ -9,7 +9,6 @@ echo "CHAIN_ID  = $CHAIN_ID"
 echo "MONIKER = $MONIKER"
 echo "ORACLE_URL = $ORACLE_URL"
 echo "RECOVER_FROM_SNAPSHOTS = $RECOVER_FROM_SNAPSHOTS"
-echo "MINIMUM_GAS_PRICES = $MINIMUM_GAS_PRICES"
 
 if [ -f "$flag_file" ]; then
     echo "Flag file exists. Starting directly."
@@ -38,6 +37,8 @@ fi
 
 # setting minimum-gas-prices = "20000000000uart"
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"20000000000uart\"|" $HOME/$APP_DATA_DIR/config/app.toml
+
+sed -i 's/laddr = "tcp:\/\/127\.0\.0\.1:27857"/laddr = "tcp:\/\/0.0.0.0:27857"/' $HOME/$APP_DATA_DIR/config/config.toml
 
 sed -i \
 -e "s/^pruning *=.*/pruning = \"custom\"/" \
