@@ -35,6 +35,8 @@ if [ "$RECOVER_FROM_SNAPSHOTS" = "true" ]; then
 fi
 
 
+# These idiotic project teams all use the same framework, and yet they can't even standardize their RPC ports. It's ridiculous.
+sed -i 's/laddr = "tcp:\/\/127\.0\.0\.1:26657"/laddr = "tcp:\/\/0.0.0.0:26657"/' $HOME/.initia/config/config.toml
 sed -i 's/laddr = "tcp:\/\/127\.0\.0\.1:27857"/laddr = "tcp:\/\/0.0.0.0:27857"/' $HOME/.initia/config/config.toml
 
 # setting minimum-gas-prices = "0.15uinit,0.01uusdc"
