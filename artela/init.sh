@@ -9,6 +9,7 @@ echo "CHAIN_ID  = $CHAIN_ID"
 echo "MONIKER = $MONIKER"
 echo "ORACLE_URL = $ORACLE_URL"
 echo "RECOVER_FROM_SNAPSHOTS = $RECOVER_FROM_SNAPSHOTS"
+echo "MINIMUM_GAS_PRICES = $MINIMUM_GAS_PRICES"
 
 if [ -f "$flag_file" ]; then
     echo "Flag file exists. Starting directly."
@@ -35,9 +36,8 @@ if [ "$RECOVER_FROM_SNAPSHOTS" = "true" ]; then
     mv $HOME/$APP_DATA_DIR/priv_validator_state.json $HOME/$APP_DATA_DIR/data/priv_validator_state.json
 fi
 
-
-# setting minimum-gas-prices = "0.15uinit,0.01uusdc"
-sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.15uinit,0.01uusdc\"|" $HOME/$APP_DATA_DIR/config/app.toml
+# setting minimum-gas-prices = "20000000000uart"
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"20000000000uart\"|" $HOME/$APP_DATA_DIR/config/app.toml
 
 sed -i \
 -e "s/^pruning *=.*/pruning = \"custom\"/" \
