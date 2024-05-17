@@ -38,7 +38,7 @@ fi
 # setting minimum-gas-prices = "20000000000uart"
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"20000000000uart\"|" $HOME/$APP_DATA_DIR/config/app.toml
 
-sed -i 's/laddr = "tcp:\/\/127\.0\.0\.1:27857"/laddr = "tcp:\/\/0.0.0.0:27857"/' $HOME/$APP_DATA_DIR/config/config.toml
+sed -i 's/laddr = "tcp:\/\/127\.0\.0\.1:26657"/laddr = "tcp:\/\/0.0.0.0:26657"/' $HOME/$APP_DATA_DIR/config/config.toml
 
 sed -i \
 -e "s/^pruning *=.*/pruning = \"custom\"/" \
