@@ -13,7 +13,7 @@ if [ -f "$flag_file" ]; then
     echo "Flag file exists. Starting directly."
 else
     echo "Starting init"
-    initiad init $NODE_NAME --chain-id $CHAIN_ID
+    initiad init $MONIKER --chain-id $CHAIN_ID
 
     # genesis
     curl -Ls $GENESIS_URL > $HOME/.initia/config/genesis.json

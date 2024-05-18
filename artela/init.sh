@@ -29,9 +29,9 @@ if [ "$RECOVER_FROM_SNAPSHOTS" = "true" ]; then
     # Back up priv_validator_state.json if needed
     cp $HOME/$APP_DATA_DIR/data/priv_validator_state.json $HOME/$APP_DATA_DIR/priv_validator_state.json
 
-    initiad tendermint unsafe-reset-all --home $HOME/$APP_DATA_DIR --keep-addr-book
+    artelad tendermint unsafe-reset-all --home $HOME/$APP_DATA_DIR --keep-addr-book
 
-    lz4 -c -d $HOME/metadata/$SNAP_FILE | tar -x -C $HOME/.initia
+    lz4 -c -d $HOME/metadata/artela_latest.tar.lz4 | tar -x -C $HOME/$APP_DATA_DIR
     mv $HOME/$APP_DATA_DIR/priv_validator_state.json $HOME/$APP_DATA_DIR/data/priv_validator_state.json
 fi
 

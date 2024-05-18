@@ -49,7 +49,7 @@ node/initia/.env 参数说明
 MARKET_MAP_ENDPOINT=initia:9090 # 默认不需要改，预言机依赖链数据的 URL
 ORACLE_URL=initia-slinky:8080 # 默认不需要改，链依赖预言机数据的 URL
 
-NODE_NAME=kantandadui # 改成你想给自己节点取的名字
+MONIKER=kantandadui # 改成你想给自己节点取的名字
 
 SEEDS=id@ip:port # 从这里复制的 https://www.polkachu.com/testnets/initia/seeds，如果 seeds 失效可以去获取最新数据
 PEERS=id@ip:port # 从这里复制的 https://www.polkachu.com/testnets/initia/peers，如果查看日志发现连上不上，可以去官方 dc 或者到刚才的网站去获取最新的
