@@ -67,7 +67,7 @@ SNAPSHOTS_PATH=/home/users/snapshots # 指定在你本地中存放下载好的�
 从命令行下载
 
 ```
-$ wget https://snapshots.polkachu.com/testnet-snapshots/initia/initia_150902.tar.lz4 -o initia_latest.tar.lz4
+$ wget https://snapshots.polkachu.com/testnet-snapshots/initia/initia_150902.tar.lz4 -O initia_latest.tar.lz4
 ```
 
 或者你可以选择使用某种下载软件下载，总之下载好后请做 2 个修改
