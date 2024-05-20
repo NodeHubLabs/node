@@ -8,7 +8,7 @@ https://initia.xyz/ initia 测试网 Docker 一键部署
 
 ## Info
 
-- 节点版本 version: https://github.com/initia-labs/initia/tree/v0.2.14
+- version: https://github.com/initia-labs/initia/tree/v0.2.15
 
 ## How to run
 

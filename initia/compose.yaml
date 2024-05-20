@@ -16,6 +16,9 @@ services:
       - initia-slinky
     networks:
       - initia-network
+    ports:
+      - '26657'
+      - '26656'
     command: ['/bin/sh', '-c', '/app/init.sh && initiad start']
     volumes:
       - initia_data:/root/.initia

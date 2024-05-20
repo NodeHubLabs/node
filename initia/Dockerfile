@@ -9,7 +9,7 @@ RUN git clone https://github.com/initia-labs/initia.git
 
 WORKDIR /code/initia
 
-RUN git pull && git checkout v0.2.14 && LEDGER_ENABLED=false make build
+RUN git pull && git checkout v0.2.15 && LEDGER_ENABLED=false make build
 
 RUN cp /go/pkg/mod/github.com/initia\-labs/movevm@v*/api/libmovevm.x86_64.so /lib/libmovevm.so
 RUN cp /go/pkg/mod/github.com/initia\-labs/movevm@v*/api/libcompiler.x86_64.so /lib/libcompiler.so
