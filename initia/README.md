@@ -1,8 +1,8 @@
 # Initia
 
-[![Discord](https://img.shields.io/discord/1229140544102338670?color=7289DA&logo=discord&logoColor=white)](https://discord.gg/hZXXnnpJv8)
+[![Discord](https://img.shields.io/discord/1229140544102338670?color=7289DA&logo=discord&logoColor=white)](https://discord.gg/CHzgzSSbt6)
 
-欢迎加入勘探大队 DC 反馈问题或者讨论分享信息
+欢迎加入 NodeHub DC 反馈问题或者讨论分享信息
 
 https://initia.xyz/ initia 测试网 Docker 一键部署
 
@@ -70,7 +70,7 @@ SNAPSHOTS_PATH=/home/users/snapshots # 指定在你本地中存放下载好的�
 $ wget https://snapshots.polkachu.com/testnet-snapshots/initia/initia_150902.tar.lz4 -O initia_latest.tar.lz4
 ```
 
-或者你可以选择使用某种下载软件下载，总之下载好后请做 2 个修改
+或者你可以选择使用某种下载软件下载，总之下载好后请做 3 个修改
 
 1. 修改 .env 的 RECOVER_FROM_SNAPSHOTS=true
 2. 修改 .env 的 SNAPSHOTS_PATH 为你存放快照的文件夹全路径，比如 /home/users/snapshots，注意到文件夹路径就行，不需要指定到文件

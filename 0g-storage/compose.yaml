@@ -1,0 +1,10 @@
+services:
+  0g-storage-node:
+    image: kantandadui/0g-storage-node:latest
+    container_name: 0g-storage-node
+    pull_policy: always
+    volumes:
+      - 0g_storage_node_data:/root/.initia
+
+volumes:
+  0g_storage_node_data:
