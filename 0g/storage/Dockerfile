@@ -19,3 +19,6 @@ COPY --from=builder /code/0g-storage-node/run/config.toml /app/config.toml
 COPY --from=builder /code/0g-storage-node/run/log_config /app/log_config
 
 RUN zgs_node -V
+
+COPY init.sh /app/init.sh
+RUN chmod +x /app/init.sh

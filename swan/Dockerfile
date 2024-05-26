@@ -11,18 +11,20 @@ WORKDIR /code/go-computing-provider
 
 RUN git pull && git checkout releases && make clean && make && make install
 
-ENV CP_PATH=/code/go-computing-provider
+ENV CP_PATH /code/go-computing-provider
 RUN ./install.sh
 
 FROM ubuntu:22.04 as runner
 
 RUN apt-get update && \
-    apt-get install -y python3 python3-pip
+    apt-get install -y ca-certificates
 
 WORKDIR /app
 
 COPY --from=builder /code/go-computing-provider/computing-provider /app/computing-provider
 COPY --from=builder /code/go-computing-provider/inference-model /app/inference-model
+
+ENV CP_PATH /app
 
 RUN /app/computing-provider -v
 

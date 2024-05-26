@@ -1,4 +1,4 @@
-.PHONY: build build-dev build-images clean push
+.PHONY: build build-dev build-images clean push build-single
 
 DIRS := $(shell find . -type f \( -name 'Dockerfile' -o -name 'Dockerfile.*' \) -exec dirname {} \; | sort | uniq)
 
@@ -15,6 +15,9 @@ build-images:
 	@for dir in $(DIRS); do \
 		$(MAKE) build-dir DIR=$$dir SUFFIX=$(SUFFIX); \
 	done
+
+build-single:
+	@$(MAKE) build-dir DIR=$(DIR) SUFFIX=$(SUFFIX)
 
 build-dir:
 	$(eval IMAGE_NAME = $(shell cat $(DIR)/VERSION | grep IMAGE_NAME | cut -d '=' -f2))
