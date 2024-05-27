@@ -9,7 +9,7 @@ RUN git clone https://github.com/swanchain/go-computing-provider.git
 
 WORKDIR /code/go-computing-provider
 
-RUN git pull && git checkout releases && make clean && make && make install
+RUN git pull && git checkout v0.4.8 && make clean && make && make install
 
 ENV CP_PATH /code/go-computing-provider
 RUN ./install.sh
