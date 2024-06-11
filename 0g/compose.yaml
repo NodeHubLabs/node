@@ -1,10 +1,33 @@
 services:
-  0g-storage-node:
-    image: kantandadui/0g-storage-node:latest
-    container_name: 0g-storage-node
+  0g-storage:
+    image: kantandadui/0g-storage:latest
+    container_name: 0g-storage
     pull_policy: always
     volumes:
-      - 0g_storage_node_data:/root/.initia
+      - 0g_storage_data:/root/.0g-storage
+    environment:
+      - RPC_ENDPOINT=${RPC_ENDPOINT}
+      - MINER_KEY=${MINER_KEY}
+      - DB_DIR=${DB_DIR}
+      - NETWORK_DIR=${NETWORK_DIR}
+      - STORAGE_BOOT_NODES=${STORAGE_BOOT_NODES}
+
+  0g-validator:
+    image: kantandadui/0g-validator:latest
+    container_name: 0g-validator
+    pull_policy: always
+    volumes:
+      - 0g_validator_data:/root/.0gchain
+    environment:
+      - GENESIS_URL=${GENESIS_URL}
+      - ADDRBOOK_URL=${ADDRBOOK_URL}
+      - PEERS=${PEERS}
+      - SEEDS=${SEEDS}
+      - CHAIN_ID=${CHAIN_ID}
+      - MONIKER=${MONIKER}
+      - RECOVER_FROM_SNAPSHOTS=${RECOVER_FROM_SNAPSHOTS}
+      - SNAPSHOTS_PATH=${SNAPSHOTS_PATH}
 
 volumes:
-  0g_storage_node_data:
+  0g_storage_data:
+  0g_validator_data:
