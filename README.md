@@ -7,3 +7,13 @@ NodeHub 是一个热衷节点撸毛和追求全自动化一键部署节点的社
 ## 一键部署
 
 [initia](./initia/README.md)
+
+## 命令
+
+```
+// 单个
+make build-single DIR=airchain/evm
+
+// all
+make
+```

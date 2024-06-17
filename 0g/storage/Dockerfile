@@ -8,7 +8,7 @@ RUN git clone https://github.com/0glabs/0g-storage-node.git
 
 WORKDIR /code/0g-storage-node
 
-RUN git pull && git checkout v0.2.0 && git submodule update --init &&cargo build --release
+RUN git pull && git checkout v0.3.1 && git submodule update --init &&cargo build --release
 
 FROM ubuntu:22.04 as runner
 
