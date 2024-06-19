@@ -3,6 +3,8 @@ echo "MINER_KEY = $MINER_KEY"
 echo "DB_DIR = $DB_DIR"
 echo "NETWORK_DIR = $NETWORK_DIR"
 echo "STORAGE_BOOT_NODES = $STORAGE_BOOT_NODES"
+echo "STORAGE_BOOT_NODES = $STORAGE_BOOT_NODES"
+echo "LOG_SYNC_START_BLOCK_NUMBER = $LOG_SYNC_START_BLOCK_NUMBER"
 
 FILE="/app/config.toml"
 
@@ -13,3 +15,4 @@ sed -i "s|^#\? *network_dir *= *.*|network_dir = \"$NETWORK_DIR\"|" "$FILE"
 sed -i "s|^# \(rpc_enabled = true\)|\1|" "$FILE"
 STORAGE_BOOT_NODES=$(echo $STORAGE_BOOT_NODES | sed "s/^'//;s/'$//")
 sed -i.bak "s|^network_boot_nodes = .*|network_boot_nodes = $STORAGE_BOOT_NODES|" config.toml
+sed -i "s|^log_sync_start_block_number = .*|log_sync_start_block_number = $LOG_SYNC_START_BLOCK_NUMBER |" "$FILE"

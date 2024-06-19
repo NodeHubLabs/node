@@ -5,11 +5,11 @@ RUN apt-get update && \
 
 WORKDIR /code
 
-RUN git clone https://github.com/swanchain/go-computing-provider.git
+RUN git clone https://github.com/yejiayu/go-computing-provider.git
 
 WORKDIR /code/go-computing-provider
 
-RUN git pull && git checkout v0.4.8 && make clean && make && make install
+RUN git pull && git checkout fix-ubi && make clean && make && make install
 
 ENV CP_PATH /code/go-computing-provider
 RUN ./install.sh
@@ -27,6 +27,3 @@ COPY --from=builder /code/go-computing-provider/inference-model /app/inference-m
 ENV CP_PATH /app
 
 RUN /app/computing-provider -v
-
-
-
