@@ -5,7 +5,7 @@ RUN apt-get update && \
 
 WORKDIR /code
 
-RUN git clone https://github.com/airchains-network/evm-station.git
+RUN git clone https://github.com/yejiayu/evm-station.git
 
 WORKDIR /code/evm-station
 
@@ -26,6 +26,3 @@ COPY init.sh /app/init.sh
 RUN chmod +x /app/init.sh
 
 RUN station-evm -h
-
-
-
