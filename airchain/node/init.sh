@@ -9,6 +9,9 @@ echo "CHAIN_ID  = $CHAIN_ID"
 echo "MONIKER = $MONIKER"
 echo "RECOVER_FROM_SNAPSHOTS = $RECOVER_FROM_SNAPSHOTS"
 echo "SNAP_FILE = $SNAP_FILE"
+echo "STATE_RPC_SERVERS = $STATE_RPC_SERVERS"
+echo "LATEST_BLOCK_URL = $LATEST_BLOCK_URL"
+echo "STATE_SYNC = $STATE_SYNC"
 
 if [ -f "$flag_file" ]; then
     echo "Flag file exists. Starting directly."
@@ -35,6 +38,21 @@ if [ "$RECOVER_FROM_SNAPSHOTS" = "true" ]; then
     mv $HOME/$APP_DATA_DIR/priv_validator_state.json $HOME/$APP_DATA_DIR/data/priv_validator_state.json
 fi
 
+if [ "$STATE_SYNC" = "true" ]; then
+    echo "Enable state sync"
+
+    BLOCK=$(curl -s $LATEST_BLOCK_URL)
+    HEIGHT=$(echo $BLOCK | jq -r '.result.block.header.height')
+    HASH=$(echo $BLOCK | jq -r '.result.block_id.hash')
+
+    echo "state height = $HEIGHT"
+    echo "state hash = $HASH"
+
+    sed -i "s|^enable = .*|enable = true|" "$HOME/$APP_DATA_DIR/config/config.toml"
+    sed -i "s|^rpc_servers = .*|rpc_servers = \"$STATE_RPC_SERVERS\"|" "$HOME/$APP_DATA_DIR/config/config.toml"
+    sed -i "s/^trust_height = .*/trust_height = \"$HEIGHT\"/" $HOME/$APP_DATA_DIR/config/config.toml
+    sed -i "s/^trust_hash = .*/trust_hash = \"$HASH\"/" $HOME/$APP_DATA_DIR/config/config.toml
+fi
 
 # setting minimum-gas-prices = "0.001amf"
 sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.001amf\"|" $HOME/$APP_DATA_DIR/config/app.toml

@@ -13,7 +13,7 @@ RUN git checkout v0.1.0 && go build -o build/junctiond cmd/junctiond/main.go
 
 FROM ubuntu:22.04 as runner
 RUN apt-get update && \
-    apt-get install -y sed curl jq lz4 tar expect 
+    apt-get install -y sed curl jq lz4 tar expect ca-certificates
 
 WORKDIR /app
 
@@ -23,6 +23,3 @@ RUN junctiond version
 
 COPY init.sh /app/init.sh
 RUN chmod +x /app/init.sh
-
-
-
