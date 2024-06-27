@@ -5,6 +5,7 @@ echo "NETWORK_DIR = $NETWORK_DIR"
 echo "STORAGE_BOOT_NODES = $STORAGE_BOOT_NODES"
 echo "STORAGE_BOOT_NODES = $STORAGE_BOOT_NODES"
 echo "LOG_SYNC_START_BLOCK_NUMBER = $LOG_SYNC_START_BLOCK_NUMBER"
+echo "LOG_CONTRACT_ADDRESS = $LOG_CONTRACT_ADDRESS"
 
 FILE="/app/config.toml"
 
@@ -16,3 +17,4 @@ sed -i "s|^# \(rpc_enabled = true\)|\1|" "$FILE"
 STORAGE_BOOT_NODES=$(echo $STORAGE_BOOT_NODES | sed "s/^'//;s/'$//")
 sed -i.bak "s|^network_boot_nodes = .*|network_boot_nodes = $STORAGE_BOOT_NODES|" config.toml
 sed -i "s|^log_sync_start_block_number = .*|log_sync_start_block_number = $LOG_SYNC_START_BLOCK_NUMBER |" "$FILE"
+sed -i "s|^log_contract_address = .*|log_contract_address = \"$LOG_CONTRACT_ADDRESS\" |" "$FILE"

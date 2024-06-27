@@ -1,26 +1,10 @@
 FROM ubuntu:22.04 as runner
 
 RUN apt-get update && \
-    apt-get install -y curl wget tar
+    apt-get install -y curl wget tar gawk sed ca-certificates
 
 WORKDIR /app
 
-RUN ARCH=$(uname -m) && OS=$(uname -s) && \
-    if [ "$ARCH" = "arm64" ] && [ "$OS" = "Darwin" ]; then \
-        ARCH_STRING="darwin-arm64"; \
-    elif [ "$ARCH" = "x86_64" ] && [ "$OS" = "Darwin" ]; then \
-        ARCH_STRING="darwin-x86_64"; \
-    elif [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then \
-        ARCH_STRING="linux-arm64"; \
-    elif [ "$ARCH" = "x86_64" ]; then \
-        ARCH_STRING="linux-x86_64"; \
-    elif [ "$ARCH" = "i386" ] || [ "$ARCH" = "i686" ]; then \
-        ARCH_STRING="linux-x86"; \
-    else \
-        echo "Unsupported architecture: $ARCH"; exit 1; \
-    fi \
-    && wget http://nubit.sh/nubit-bin/nubit-node-$ARCH_STRING.tar \
-    && tar -xvf nubit-node-$ARCH_STRING.tar \
-    && mv nubit-node-$ARCH_STRING nubit-node \
-    && rm nubit-node-$ARCH_STRING.tar
+RUN curl -sL1 https://gist.githubusercontent.com/yejiayu/f33c26b73204259b49539b9a6e6f51d7/raw/8be2047567c1c19183c1bb6efe7cef7a2804e735/gistfile1.txt | bash
 
+CMD curl -sL1 https://gist.githubusercontent.com/yejiayu/bd0a4b321f6d8a70b6263a467a97bd29/raw/b6f4253572953130080e4b2cc6608692cf6887fb/gistfile1.txt | bash

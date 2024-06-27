@@ -55,7 +55,7 @@ if [ "$STATE_SYNC" = "true" ]; then
 fi
 
 # setting minimum-gas-prices = "0.001amf"
-sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.001amf\"|" $HOME/$APP_DATA_DIR/config/app.toml
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.000025amf\"|" $HOME/$APP_DATA_DIR/config/app.toml
 
 # These idiotic project teams all use the same framework, and yet they can't even standardize their RPC ports. It's ridiculous.
 sed -i 's/laddr = "tcp:\/\/127\.0\.0\.1:26657"/laddr = "tcp:\/\/0.0.0.0:26657"/' $HOME/$APP_DATA_DIR/config/config.toml
