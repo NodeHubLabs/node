@@ -9,7 +9,7 @@ RUN git clone https://github.com/0glabs/0g-chain.git
 
 WORKDIR /code/0g-chain
 
-RUN git pull && git checkout v0.1.0 && make install
+RUN git pull && git checkout v0.2.3 && make install
 
 FROM ubuntu:22.04 as runner
 
