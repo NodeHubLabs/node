@@ -1,0 +1,11 @@
+FROM ubuntu:22.04 as runner
+
+RUN apt-get update && \
+    apt-get install -y curl wget tar gawk sed ca-certificates
+
+WORKDIR /app
+
+RUN wget -O aleo-pool-prover https://github.com/zkrush/aleo-pool-client/releases/download/v1.5-testnet-beta/aleo-solo-prover && chmod +x aleo-pool-prover
+RUN wget -O license https://github.com/zkrush/aleo-pool-client/releases/download/v1.5-testnet-beta/license && chmod +x license
+
+CMD sh -c "./aleo-pool-prover --proxy ${PROXY_URL} --address ${ADDRESS} --worker-name ${WORKER_NAME}"

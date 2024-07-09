@@ -1,0 +1,50 @@
+FROM rust:1.79.0 as builder
+
+RUN apt-get update && \
+    apt-get install -y \
+    	build-essential \
+    	curl \
+    	clang \
+    	gcc \
+    	libssl-dev \
+    	llvm \
+    	make \
+    	pkg-config \
+    	tmux \
+    	xz-utils \
+    	ufw
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+WORKDIR /code
+RUN git clone --branch mainnet --single-branch https://github.com/AleoNet/snarkOS.git
+
+WORKDIR /code/snarkOS
+RUN git checkout tags/testnet-beta && cargo build --release
+
+
+FROM ubuntu:22.04 as runner
+
+WORKDIR /app
+
+COPY --from=builder /code/snarkOS/target/release/snarkos /usr/local/bin/snarkos
+
+RUN apt-get update && \
+    apt-get install -y \
+    	build-essential \
+    	curl \
+    	clang \
+    	gcc \
+    	libssl-dev \
+    	llvm \
+    	make \
+    	pkg-config \
+    	tmux \
+    	xz-utils \
+    	ufw
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+CMD sh -c "snarkos start --nodisplay --network 1 --storage /root/.aleo/storage --prover --private-key ${PROVER_PRIVATE_KEY}"
+
+
